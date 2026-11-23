@@ -1,0 +1,2 @@
+rootProject.name = "MVDApp"
+include ':app'
