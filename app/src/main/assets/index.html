@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Единая Информационная Система</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="login-screen" class="login-screen">
+  <div class="login-box">
+    <img src="logo.png" class="logo-login" onerror="this.style.display='none'">
+    <h1>Единая Информационная Система</h1>
+    <p class="muted">Введите код доступа</p>
+    <input type="password" id="code-input" maxlength="20" autocomplete="off">
+    <button onclick="doLogin()">ВОЙТИ</button>
+  </div>
+</div>
+
+<div id="main-screen" class="main-screen hidden">
+  <header class="header">
+    <img src="logo.png" class="logo-header" onerror="this.style.display='none'">
+    <span class="header-title">Единая Информационная Система</span>
+    <span id="status" class="status offline">● Сервер: Офлайн</span>
+  </header>
+  <div class="body">
+    <aside class="sidebar">
+      <div class="user-block">Сотрудник:<br><b id="username">Оператор</b></div>
+      <button class="nav-btn" onclick="showTab('search')">Поиск по базам</button>
+      <button class="nav-btn" onclick="showTab('fns')">Проверка ФНС</button>
+      <button class="nav-btn" onclick="showTab('ip')">IP-Инфо</button>
+      <button class="nav-btn" onclick="showTab('settings')">Настройки</button>
+      <button class="nav-btn" onclick="showTab('about')">О программе</button>
+      <div class="spacer"></div>
+      <button class="nav-btn logout" onclick="doLogout()">Выйти из системы</button>
+    </aside>
+    <main class="content">
+      <section id="tab-search" class="tab">
+        <h2>Поиск по базе данных</h2>
+        <div class="search-form">
+          <label>Фамилия: <input id="f-last"></label>
+          <label>Имя: <input id="f-first"></label>
+          <label>Отчество: <input id="f-middle"></label>
+          <label>Дата рождения: <input id="f-dob" placeholder="ДД.ММ.ГГГГ"></label>
+          <label>ИНН: <input id="f-inn"></label>
+          <button onclick="doSearch()">Найти</button>
+        </div>
+        <pre id="search-result" class="result"></pre>
+      </section>
+      <section id="tab-fns" class="tab hidden">
+        <h2>Проверка контрагента (ФНС)</h2>
+        <label>ИНН / ОГРН: <input id="fns-input"></label>
+        <button onclick="doFns()">Запросить</button>
+        <pre id="fns-result" class="result"></pre>
+      </section>
+      <section id="tab-ip" class="tab hidden">
+        <h2>Информация по IP / Домену</h2>
+        <label>IP или домен: <input id="ip-input"></label>
+        <button onclick="doIp()">Проверить</button>
+        <pre id="ip-result" class="result"></pre>
+      </section>
+      <section id="tab-settings" class="tab hidden">
+        <h2>Настройки</h2>
+        <label>Ваше имя: <input id="set-name"></label>
+        <label>Сменить код: <input id="set-code" type="password"></label>
+        <label class="checkbox"><input type="checkbox" id="set-dark"> Тёмная тема</label>
+        <button onclick="saveSettings()">Сохранить</button>
+      </section>
+      <section id="tab-about" class="tab hidden">
+        <h2>О программе</h2>
+        <pre class="about-text">Единая Информационная Система
+Версия 2.0
+
+© 2026</pre>
+      </section>
+    </main>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
